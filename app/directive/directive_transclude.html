@@ -1,0 +1,8 @@
+<div class="col-sm-10 well" ng-controller="DirectiveTranscludeController as DirectiveTransclude_C">
+
+	{{scopeOwnerName}}
+	<directive-transclude-element ng-show="isDialogueBoxVisible" on-close="closeDialougeBox(message)">
+		This is a box,
+	</directive-transclude-element>
+
+</div>

@@ -2,16 +2,16 @@ angular
 	.module(
 	'storeFrontApp.isolate_scope_d',
 	[
-		'ngRoute'
+		'ui.router'
 	])
 	.config(
 	[
-		'$routeProvider',
-		function ($routeProvider) {
+		'$stateProvider',
+		function ($stateProvider) {
 
-			$routeProvider
-				.when(
-				'/isolatedscoped', {
+			$stateProvider
+				.state('directiveIsolatedScopeFeature', {
+					url: '/directive-isolated-scope-feature',
 					templateUrl: "directive/isolate_scope.html",
 					controller: "IsolateScopeController"
 				});
@@ -22,11 +22,24 @@ angular
 		'$scope',
 		function ($scope) {
 
+			/**
+			 * `$scope.customer` contains customer name object.
+			 */
+			$scope.customer = {
+				'name': 'parvesh kumar tandon',
+				'address': '1300 Robert B. Cullum Boulevard, Dallas, TX 75210.'
+			};
 		}
 	])
 	.directive('isolateScopeDirective', function () {
 
 		return {
-			template: "hiiiiiiiiiiii"
+
+			restrict: 'E',
+			scope: {
+				"customerName": "=customername",
+				"customerAddress": "="
+			},
+			templateUrl: "directive/isolate_scope_template.html"
 		};
 	});
